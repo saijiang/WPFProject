@@ -1,0 +1,279 @@
+﻿<Window x:Class="WPFTest.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFTest.Views"
+        xmlns:base="clr-namespace:WPFTest.Base"
+        mc:Ignorable="d"
+     
+        Background="#0076ff" FontFamily="Microsoft YaHei" FontWeight="ExtraLight" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+       SizeToContent="WidthAndHeight"
+        Title="系统登陆" >
+    
+    <!--修改组件样式-->
+
+    <Window.Resources>
+        <!--字体图标地址全局(变量)-->
+        <FontFamily x:Key="iconfont">pack://application:,,,/WPFTest;component/Assets/Fonts/#iconfont</FontFamily>
+        <!--修改按钮样式（控件末班）-->
+        <ControlTemplate TargetType="Button" x:Key="CloseButtonTemplate">
+            <Grid Background="Transparent" Name="back">
+                <TextBlock Text="&#xe646;" FontFamily="{StaticResource iconfont}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            </Grid>
+            <!--触发器 鼠标移上去时改变该组件的样式-->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ddd" TargetName="back"></Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        
+        <!--样式模板-->
+        <Style TargetType="TextBox" x:Key="UserNameTextBoxStyle">
+            <!--设置字体颜色-->
+            <Setter Property="Foreground" Value="Red"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+           
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <!--边框样式-->
+                        <Border 
+                            x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5"
+                          
+                            >
+                            <!--里面内容-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <!--BorderThickness 边框宽度-->
+                                <Border BorderBrush="#ddd" BorderThickness="0,0,1,0"></Border>
+                                <TextBlock 
+                                    Text="请输入用户名"
+                                    Grid.Column="1" 
+                                    VerticalAlignment="Center"
+                                    Foreground="#bbb"
+                                    Name="markText"
+                                    Visibility="Collapsed"
+                                    FontSize="12"
+                                    Margin="2,0"
+                                    ></TextBlock>
+                                <TextBlock Text="&#xe788;"
+                                           FontFamily="{StaticResource iconfont}"
+                                           FontSize="14"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Foreground="#ddd"
+                                           ></TextBlock>
+                                <ScrollViewer 
+                                    x:Name="PART_ContentHost"
+                                    Focusable="False"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    MinHeight="20"
+                                    ></ScrollViewer>
+                            </Grid>
+                            
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#ff7eed"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#23edc2"></Setter>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                <Setter Property="Visibility" TargetName="markText" Value="Visible"></Setter>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>    
+                        
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--密码-->
+        <Style TargetType="PasswordBox" x:Key="PasswordStyle">
+            <Setter Property="Foreground" Value="Red"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+
+                        <!--边框样式-->
+                        <Border 
+                            x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5"
+                          
+                            >
+                            <!--里面内容-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <!--BorderThickness 边框宽度-->
+                                <Border BorderBrush="#ddd" BorderThickness="0,0,1,0"></Border>
+                                <TextBlock 
+                                    Text="请输入密码"
+                                    Grid.Column="1" 
+                                    VerticalAlignment="Center"
+                                    Foreground="#bbb"
+                                    Name="markText"
+                                    Visibility="Collapsed"
+                                    FontSize="12"
+                                    Margin="2,0"
+                                    ></TextBlock>
+                                <TextBlock Text="&#xe8b2;"
+                                           FontFamily="{StaticResource iconfont}"
+                                           FontSize="14"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Foreground="#ddd"
+                                           ></TextBlock>
+                                <ScrollViewer 
+                                    x:Name="PART_ContentHost"
+                                    Focusable="False"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    MinHeight="20"
+                                    ></ScrollViewer>
+                            </Grid>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#ff7eed"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#23edc2"></Setter>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding Path=userModel.Password}" Value="">
+                                <Setter Property="Visibility" TargetName="markText" Value="Visible"></Setter>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+
+
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter> 
+        </Style>
+        
+        
+        
+    </Window.Resources>
+    
+    <Grid Width="740" Margin="5" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <!--右边输入以及登陆界面展示-->
+        <Border Background="#f7f9fa" Margin="0,6" HorizontalAlignment="Right" Width="330" BorderThickness="0" CornerRadius="5">
+            <Grid Margin="80,0,10,0">
+                <!--页面整体布局-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto" MinHeight="30"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--start 子页面布局开始 -->
+                <!--Grid.Row='5' 表示在上面父页面的第几个子控件上面-->
+                <!--关闭按钮  Template="{StaticResource CloseButtonTemplate}" 自定义按钮样式绑定-->
+                <Button 
+                    HorizontalAlignment="Right"  
+                    Width="40" Height="30"
+                    Template="{StaticResource CloseButtonTemplate}"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="绑定的事件传递的参数"
+                    ></Button>
+                <!--标题-->
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="WPF上位机开发"  FontSize="20" FontWeight="Bold" ></TextBlock>
+                    <TextBlock Text="c#开发桌面程序"></TextBlock>
+                </StackPanel>
+                <!--输入框 输入账号 以及 密码  UpdateSourceTrigger=PropertyChanged 绑定model时可以直接将输入的值 绑定到model模型中去-->
+                <TextBox Text="{Binding userModel.UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3"  Style="{StaticResource UserNameTextBoxStyle}" ></TextBox>
+                <PasswordBox
+                    base:PasswordBoxHelper.Password="{Binding userModel.Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    base:PasswordBoxHelper.Attach="true"
+                    Grid.Row="4" Style="{StaticResource PasswordStyle}"></PasswordBox>
+                
+                <!--记住登陆信息 以及 忘记密码-->
+                <CheckBox Content="记住登陆信息" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" Grid.Row='5'></CheckBox>
+                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" Grid.Row="5">
+                    <!--超链接-->
+                    <Hyperlink>忘记密码</Hyperlink>
+                </TextBlock>
+                
+                <!--登陆按钮-->
+
+                <Button Content="登   录" Background="#0076ff" Height="35" Foreground="#ffffff" Grid.Row="6"></Button>
+                
+                <!--错误信息-->
+
+                <TextBlock Text="账号或密码错误"
+                           TextWrapping="Wrap"
+                           LineHeight="23"
+                           TextAlignment="Center"
+                           Grid.Row="7" Foreground="Red"></TextBlock>
+                
+                <!-- end 子页面布局结束-->
+                
+                
+            </Grid>
+        </Border>
+        
+        <!--图片 （不规则的图片 Points 坐标点）-->
+        <Polygon
+            Points="0 0,420,0,450 200 420 400 0 400" 
+            HorizontalAlignment="Left"
+           
+        >
+            <!--图片 fill( Fill="Orange") 不仅可以填充颜色 也可以填充图片-->
+            <Polygon.Fill>
+                <!--设置图片相关参数-->
+                <ImageBrush  Stretch="UniformToFill" ImageSource="pack://application:,,,/WPFTest;component/Assets/Images/back_Image.png"></ImageBrush>
+            </Polygon.Fill>
+            <!--设置图片阴影 相关参数 ShadowDepth 阴影深度-->
+            <Polygon.Effect>
+                <DropShadowEffect Color="Black" ShadowDepth="5" Direction="6" BlurRadius="10" Opacity="0.8"></DropShadowEffect>
+            </Polygon.Effect>
+        </Polygon>
+        
+    </Grid>
+</Window>
+
+<!--
+    MouseLeftButtonDown 按钮按下事件状态 （弹起时实现 还是按下时实现）
+    ResizeMode="NoResize"  是否可以调节窗口的大小 （NoResize不可调节）
+    SizeToContent="WidthAndHeight" 去除多余的窗口 自适应窗口大小
+    Viewbox="0,0,1.4,1" 视口 (图片较大时 显示那部分的图片 也可以说是图片的移动)
+ -->
+        

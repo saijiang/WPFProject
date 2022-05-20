@@ -1,0 +1,15 @@
+﻿<Application x:Class="WPFTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPFTest"
+           
+            ShutdownMode="OnExplicitShutdown"
+    
+    >
+    <!--主函数入口文件（默认文件窗口  StartupUri="MainWindow.xaml"）启动主窗口之前有个一个登陆窗口-->
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
+
+
