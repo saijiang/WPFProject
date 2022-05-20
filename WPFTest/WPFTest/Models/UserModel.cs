@@ -24,5 +24,18 @@ namespace WPFTest.Models
             get { return _password; }
             set { _password = value; this.NotifyChanged(); }
         }
+
+        //异常信息
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                this.NotifyChanged();
+            }
+        }
+
     }
 }

@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using WPFTest.Base;
 using WPFTest.Models;
+using WPFTest.Service;
 
 namespace WPFTest.ViewModels
 {
     internal class LoginViewModel
     {
+
+        LoginService loginService = new LoginService();
+
         // 绑定model 
         public UserModel userModel { get; set; } = new UserModel();
+
+
 
         public LoginViewModel()
         {
@@ -43,7 +49,47 @@ namespace WPFTest.ViewModels
         }
         //登陆事件
         private CommondBase _loginCommand;
-        public CommondBase LoginCommand { get; set; }
+        public CommondBase LoginCommand {
+
+            get
+            {
+                if (_loginCommand == null)
+                {
+                    _loginCommand = new CommondBase();
+                    _loginCommand.DoExecute = new Action<object>(obj =>
+                    {
+
+                        // MessageBox.Show("账户号{0}，密码{1}",userModel.UserName,userModel.Password,"提示");
+                        // 这里传递的是整个 loginwindow 窗口 window
+
+                        userModel.ErrorMessage = "";
+
+                        try
+                        {
+                            if (loginService.CheckLogin(userModel.UserName, userModel.Password))
+                            {
+                                (obj as Window).DialogResult = true; // 和 app.cs 中文件相对应  为true 隐藏登录窗口 显示主窗口
+                            }
+                            else
+                            {
+                                userModel.ErrorMessage = "用户名或密码错误了";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            //抛出异常信息
+                          //  throw ex;
+                            userModel.ErrorMessage = ex.Message;
+                        }
+
+
+
+                    });
+                }
+                return _loginCommand;
+            }
+        
+        }
 
     }
 }

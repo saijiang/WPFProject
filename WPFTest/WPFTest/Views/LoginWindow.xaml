@@ -215,8 +215,8 @@
                     ></Button>
                 <!--标题-->
                 <StackPanel Grid.Row="1">
-                    <TextBlock Text="WPF上位机开发"  FontSize="20" FontWeight="Bold" ></TextBlock>
-                    <TextBlock Text="c#开发桌面程序"></TextBlock>
+                    <TextBlock Text="我是标题"  FontSize="20" FontWeight="Bold" ></TextBlock>
+                    <TextBlock Text="我是副标题"></TextBlock>
                 </StackPanel>
                 <!--输入框 输入账号 以及 密码  UpdateSourceTrigger=PropertyChanged 绑定model时可以直接将输入的值 绑定到model模型中去-->
                 <TextBox Text="{Binding userModel.UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3"  Style="{StaticResource UserNameTextBoxStyle}" ></TextBox>
@@ -234,11 +234,16 @@
                 
                 <!--登陆按钮-->
 
-                <Button Content="登   录" Background="#0076ff" Height="35" Foreground="#ffffff" Grid.Row="6"></Button>
+                <Button Content="登   录" Background="#0076ff"
+                        Height="35" Foreground="#ffffff"
+                        Grid.Row="6"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                        ></Button>
                 
                 <!--错误信息-->
 
-                <TextBlock Text="账号或密码错误"
+                <TextBlock Text="{Binding userModel.ErrorMessage}"
                            TextWrapping="Wrap"
                            LineHeight="23"
                            TextAlignment="Center"
