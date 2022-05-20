@@ -10,7 +10,7 @@ namespace WPFTest.Base
 {
     internal class NotifyBase : INotifyPropertyChanged
     {
-        //通知属性基础类
+        //通知属性基础类    model 模型变量 父类
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public void NotifyChanged([CallerMemberName] string propName = "")

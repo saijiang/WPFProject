@@ -213,11 +213,11 @@
                     Command="{Binding CloseCommand}"
                     CommandParameter="绑定的事件传递的参数"
                     ></Button>
-                <!--标题-->
+                <!--标题   StackPanel 内容像一个方向拉伸，允许一个个的堆叠 -->
                 <StackPanel Grid.Row="1">
                     <TextBlock Text="我是标题"  FontSize="20" FontWeight="Bold" ></TextBlock>
                     <TextBlock Text="我是副标题"></TextBlock>
-                </StackPanel>
+               </StackPanel>
                 <!--输入框 输入账号 以及 密码  UpdateSourceTrigger=PropertyChanged 绑定model时可以直接将输入的值 绑定到model模型中去-->
                 <TextBox Text="{Binding userModel.UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3"  Style="{StaticResource UserNameTextBoxStyle}" ></TextBox>
                 <PasswordBox
