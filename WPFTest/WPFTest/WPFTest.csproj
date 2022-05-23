@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Assets\Fonts\iconfont.ttf" />
     <None Remove="Assets\Images\back_image.png" />
+    <None Remove="Assets\Images\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
   <ItemGroup>
     <Resource Include="Assets\Fonts\iconfont.ttf" />
     <Resource Include="Assets\Images\back_image.png" />
+    <Resource Include="Assets\Images\logo.png" />
   </ItemGroup>
 
 </Project>

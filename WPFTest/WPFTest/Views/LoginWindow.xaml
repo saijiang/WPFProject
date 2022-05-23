@@ -7,7 +7,8 @@
         xmlns:base="clr-namespace:WPFTest.Base"
         mc:Ignorable="d"
      
-        Background="#0076ff" FontFamily="Microsoft YaHei" FontWeight="ExtraLight" ResizeMode="NoResize"
+        Background="Transparent" 
+         FontFamily="Microsoft YaHei" FontWeight="ExtraLight" ResizeMode="NoResize"
         WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
        SizeToContent="WidthAndHeight"
         Title="系统登陆" >
@@ -16,7 +17,7 @@
 
     <Window.Resources>
         <!--字体图标地址全局(变量)-->
-        <FontFamily x:Key="iconfont">pack://application:,,,/WPFTest;component/Assets/Fonts/#iconfont</FontFamily>
+        <!--<FontFamily x:Key="iconfont">pack://application:,,,/WPFTest;component/Assets/Fonts/#iconfont</FontFamily>-->
         <!--修改按钮样式（控件末班）-->
         <ControlTemplate TargetType="Button" x:Key="CloseButtonTemplate">
             <Grid Background="Transparent" Name="back">
@@ -187,9 +188,29 @@
         
     </Window.Resources>
     
+    <!--执行动画-->
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <!--窗口加载执行事件-->
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        To="0" Duration="0:0:1"
+                        Storyboard.TargetName="rightView"
+                        Storyboard.TargetProperty="X"
+                        ></DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    
     <Grid Width="740" Margin="5" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <!--右边输入以及登陆界面展示-->
         <Border Background="#f7f9fa" Margin="0,6" HorizontalAlignment="Right" Width="330" BorderThickness="0" CornerRadius="5">
+         <!--添加一个动画属性 从左到右 简单的线性动画-->
+            <Border.RenderTransform>
+                <TranslateTransform x:Name="rightView" X="-330"></TranslateTransform>
+            </Border.RenderTransform>
             <Grid Margin="80,0,10,0">
                 <!--页面整体布局-->
                 <Grid.RowDefinitions>

@@ -5,8 +5,167 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="#fff"
+       ResizeMode="CanResizeWithGrip"
+        Title="MainWindow" Height="650" Width="1350">
+    
+    <!--设置 设置按钮-->
+    <Window.Resources>
+      
+       <!--设置按钮样式-->
+        <ControlTemplate TargetType="Button" x:Key="settingButton">
+            <Grid Background="Transparent">
+                <TextBlock Text="&#xe70f;"
+                           FontFamily="{StaticResource iconfont}"
+                           FontSize="36"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           ></TextBlock> 
+            </Grid>
+        </ControlTemplate>
 
+        <!--左侧 tab按钮样式  如果有很多的属性需要设置的话 使用 style 样式 否则可以直接使用 ControlTemplate-->
+        <Style x:Key="leftMenuItemButtonStyle" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="Cursor" Value="Hand"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="Transparent" Height="50" Name="back">
+                            <TextBlock FontFamily="{StaticResource iconfont}"
+                                       Text="{TemplateBinding Content}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       ></TextBlock>
+                        </Grid>
+                        <!--触发器 设置 选择状态-->
+                        <ControlTemplate.Triggers>
+                            <!--设置当前触发器的高亮显示效果-->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#11ffffff" TargetName="back"></Setter>
+
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#33ffffff" TargetName="back"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ControlButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Width" Value="30"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="Transparent" Name="back">
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       FontFamily="{StaticResource iconfont}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       ></TextBlock>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#ddd"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    
+             
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
+    </Window.Resources>
+    
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!--左边设置区域-->
+            <ColumnDefinition Width="60"></ColumnDefinition>
+            <!--右边内容区域-->
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--左边设置区域-->
+        <Border Background="#0076ff">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--设置项目logo-->
+                <Image Source="pack://application:,,,/WPFTest;component/Assets/Images/logo.png"></Image>
+                <!--tab图标-->
+                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                    <RadioButton Content="&#xe60f;"
+                                 Height="80" IsChecked="True"
+                                 Style="{StaticResource leftMenuItemButtonStyle}"
+                                 ToolTip="Dashboard"
+                                 ></RadioButton>
+                    <RadioButton Content="&#xe632;"
+                                 Height="80" IsChecked="False"
+                                 Style="{StaticResource leftMenuItemButtonStyle}"
+                                 ToolTip="设备"
+                                 ></RadioButton>
+                    <RadioButton Content="&#xe661;"
+                                 Height="80" IsChecked="False"
+                                 Style="{StaticResource leftMenuItemButtonStyle}"
+                                 ToolTip="报警"
+                                 ></RadioButton>
+                    <RadioButton Content="&#xe662;"
+                                 Height="80" IsChecked="False"
+                                 Style="{StaticResource leftMenuItemButtonStyle}"
+                                 ToolTip="报表"  
+                                 ></RadioButton>
+                </StackPanel>
+                <!--设置按钮-->
+                <Button Grid.Row="2" Template="{StaticResource settingButton}"></Button>
+                
+            </Grid>
+        </Border>
+        <!--右边内容区-->
+        <Border  Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <!--设置关闭按钮等顶部相关东西-->
+                <Border BorderBrush="#ddd" BorderThickness="0,0,0,1">
+
+                </Border>
+                <!--不换行它将内容向一个方向拉伸 （相对于 WrapPanel）-->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20">
+                    <TextBlock Text="系统标题" FontSize="15"></TextBlock>
+                </StackPanel>
+                <!--自定义窗口按钮 缩小 放大 关闭-->
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" Margin="20">
+                    <Button Content="&#xe629;" Style="{StaticResource ControlButtonStyle}" ToolTip="关闭"></Button>
+                    <Button Content="&#xea6b;" Style="{StaticResource ControlButtonStyle}" ToolTip="向下还原"></Button>
+                    <Button Content="&#xe646;" Style="{StaticResource ControlButtonStyle}" ToolTip="最小化"></Button>
+                </StackPanel>
+                <!--中间显示内容区域-->
+                
+                <!--设置 底部显示框相关-->
+                <Border Grid.Row="2" Background="red"></Border>
+                
+                
+            </Grid>
+        </Border>
+        
+        
     </Grid>
 </Window>

@@ -12,6 +12,12 @@ namespace WPFTest.Service
         SqlServerAccess sqlServerAccess = new SqlServerAccess();
         public bool CheckLogin(string userName, string password)
         {
+            // 这里设置一个固定的用户名账号 为 admin 密码 123456
+            if(userName == "admin" && password == "123456")
+            {
+                return true;
+            }
+            else
             return sqlServerAccess.CheckUserInfo(userName, password);
         }
     }
