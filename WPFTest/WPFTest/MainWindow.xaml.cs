@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFTest.ViewModels;
 
 namespace WPFTest
 {
@@ -23,6 +24,12 @@ namespace WPFTest
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainViewModel();
+        }
+
+        private void Grid_MouseLeftButton(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove(); // 鼠标拖动事件 可以拖动窗口
         }
     }
 }

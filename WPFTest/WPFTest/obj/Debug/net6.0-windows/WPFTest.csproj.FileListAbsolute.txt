@@ -89,3 +89,11 @@ C:\Users\fuxinkun\Desktop\wpfc\WPFTest\WPFTest\obj\Debug\net6.0-windows\refint\W
 C:\Users\fuxinkun\Desktop\wpfc\WPFTest\WPFTest\obj\Debug\net6.0-windows\WPFTest.pdb
 C:\Users\fuxinkun\Desktop\wpfc\WPFTest\WPFTest\obj\Debug\net6.0-windows\WPFTest.genruntimeconfig.cache
 C:\Users\fuxinkun\Desktop\wpfc\WPFTest\WPFTest\obj\Debug\net6.0-windows\ref\WPFTest.dll
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\DeviceView.g.cs
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\MonitorView.g.cs
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\ReportView.g.cs
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\WarringView.g.cs
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\DeviceView.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\MonitorView.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\ReportView.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\WarringView.baml

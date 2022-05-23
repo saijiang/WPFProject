@@ -25,6 +25,11 @@
                            HorizontalAlignment="Center"
                            ></TextBlock> 
             </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
         </ControlTemplate>
 
         <!--左侧 tab按钮样式  如果有很多的属性需要设置的话 使用 style 样式 否则可以直接使用 ControlTemplate-->
@@ -66,16 +71,22 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid Background="Transparent" Name="back">
+                            <!--Visibility 元素是否显示 visible表示元素在窗体正常显示 collapsed 元素不显示也不占用空间 hidden 元素不显示但依旧为其留有空间-->
+                            <Border Name="hover" Background="{TemplateBinding Background}" Visibility="Collapsed"></Border>
                             <TextBlock Text="{TemplateBinding Content}"
                                        FontFamily="{StaticResource iconfont}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
+                                       Name="txt"
                                        ></TextBlock>
                         </Grid>
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#ddd"></Setter>
+                                <!--TargetName="hover" 来绑定 border Name="hover"-->
+                                <Setter Property="Visibility" Value="Visible" TargetName="hover"></Setter>
+                                <!--每个属性都有tag值， 可以通过tag 来传递值-->
+                                <Setter TargetName="txt" Property="Foreground" Value="{Binding Tag,RelativeSource={RelativeSource AncestorType=Button,Mode=FindAncestor}}"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     
@@ -87,9 +98,9 @@
         
         
     </Window.Resources>
-    
-    
-    <Grid>
+
+    <!--MouseLeftButtonDown="Grid_MouseLeftButton" 绑定鼠标事件 使其可以拖动窗口-->
+    <Grid Background="Transparent" MouseLeftButtonDown="Grid_MouseLeftButton">
         <Grid.ColumnDefinitions>
             <!--左边设置区域-->
             <ColumnDefinition Width="60"></ColumnDefinition>
@@ -112,21 +123,29 @@
                                  Height="80" IsChecked="True"
                                  Style="{StaticResource leftMenuItemButtonStyle}"
                                  ToolTip="Dashboard"
+                                 Command="{Binding MenuItemCommand}"
+                                 CommandParameter="WPFTest.Views.MonitorView"
                                  ></RadioButton>
                     <RadioButton Content="&#xe632;"
                                  Height="80" IsChecked="False"
                                  Style="{StaticResource leftMenuItemButtonStyle}"
                                  ToolTip="设备"
+                                 Command="{Binding MenuItemCommand}"
+                                  CommandParameter="WPFTest.Views.DeviceView"
                                  ></RadioButton>
                     <RadioButton Content="&#xe661;"
                                  Height="80" IsChecked="False"
                                  Style="{StaticResource leftMenuItemButtonStyle}"
                                  ToolTip="报警"
+                                 Command="{Binding MenuItemCommand}"
+                                  CommandParameter="WPFTest.Views.WarringView"
                                  ></RadioButton>
                     <RadioButton Content="&#xe662;"
                                  Height="80" IsChecked="False"
                                  Style="{StaticResource leftMenuItemButtonStyle}"
                                  ToolTip="报表"  
+                                 Command="{Binding MenuItemCommand}"
+                                  CommandParameter="WPFTest.Views.ReportView"
                                  ></RadioButton>
                 </StackPanel>
                 <!--设置按钮-->
@@ -152,15 +171,56 @@
                     <TextBlock Text="系统标题" FontSize="15"></TextBlock>
                 </StackPanel>
                 <!--自定义窗口按钮 缩小 放大 关闭-->
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" Margin="20">
-                    <Button Content="&#xe629;" Style="{StaticResource ControlButtonStyle}" ToolTip="关闭"></Button>
-                    <Button Content="&#xea6b;" Style="{StaticResource ControlButtonStyle}" ToolTip="向下还原"></Button>
-                    <Button Content="&#xe646;" Style="{StaticResource ControlButtonStyle}" ToolTip="最小化"></Button>
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" Margin="20,0">
+                    <Button Content="&#xe629;" Style="{StaticResource ControlButtonStyle}"
+                            Background="#ddd" Tag="#333" ToolTip="最小化"
+                            Command="{Binding MinWindows}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            ></Button>
+                    <Button Content="{Binding mainModel.BigNormalIcon , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ControlButtonStyle}" 
+                            Background="#ddd" Tag="#333" ToolTip="向下还原"
+                            Command="{Binding BigWindows}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            ></Button>
+                    <Button Content="&#xe646;" Style="{StaticResource ControlButtonStyle}"
+                            Background="Red" Tag="#ffffff" ToolTip="关闭"
+                            Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            ></Button>
+                </StackPanel>
+                <!--时间显示-->
+                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal" Margin="15,10">
+                    <TextBlock Text="{Binding mainModel.Time}" FontSize="15"></TextBlock>
                 </StackPanel>
                 <!--中间显示内容区域-->
+                <ContentControl Grid.Row="1" Content="{Binding mainModel.MainContent}"></ContentControl>
                 
                 <!--设置 底部显示框相关-->
-                <Border Grid.Row="2" Background="red"></Border>
+                <Border Grid.Row="2" Background="#f7f9fa" BorderBrush="#f0f4f1" BorderThickness="0,1,0,0">
+                    
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0">
+                            <TextBlock Text="通信状态"></TextBlock>
+                            <TextBlock Text="已连接" Margin="20,0,10,0"></TextBlock>
+                            <Border Width="10" Height="10" CornerRadius="5" Background="Green"></Border>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20,0">
+                            <TextBlock Text="admin" VerticalAlignment="Center" Margin="20,0"></TextBlock>
+                            <Border Width="35" Height="35" CornerRadius="20" BorderThickness="2" BorderBrush="White">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/WPFTest;component/Assets/Images/logo.png"></ImageBrush>
+                                </Border.Background>
+                                <Border.Effect>
+                                    <!--设置边框阴影-->
+                                    <DropShadowEffect BlurRadius="5" ShadowDepth="0" Direction="0" Opacity="0.3"></DropShadowEffect>
+                                </Border.Effect>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
+
                 
                 
             </Grid>
