@@ -97,3 +97,5 @@ C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\DeviceV
 C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\MonitorView.baml
 C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\ReportView.baml
 C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\WarringView.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\bin\Debug\net6.0-windows\LiveCharts.dll
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
