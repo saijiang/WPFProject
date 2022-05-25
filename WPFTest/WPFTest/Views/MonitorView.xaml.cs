@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFTest.ViewModels;
 
 namespace WPFTest.Views
 {
@@ -23,6 +24,7 @@ namespace WPFTest.Views
         public MonitorView()
         {
             InitializeComponent();
+            this.DataContext = new MonitorViewModel();
         }
     }
 }
