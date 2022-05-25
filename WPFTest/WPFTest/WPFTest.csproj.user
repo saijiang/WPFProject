@@ -24,7 +24,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Assets\Style\ScrollViewDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Generic.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DeviceView.xaml">

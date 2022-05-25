@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\user\Desktop\wpf\WPFTest\WPFTest\App.xaml
-6-1472366803
+8182598703
 
 18-840067075
 197560152902
-MainWindow.xaml;Views\DeviceView.xaml;Views\LoginWindow.xaml;Views\MonitorView.xaml;Views\ReportView.xaml;Views\WarringView.xaml;
+Assets\Style\ScrollViewDictionary.xaml;MainWindow.xaml;Themes\Generic.xaml;Views\DeviceView.xaml;Views\LoginWindow.xaml;Views\MonitorView.xaml;Views\ReportView.xaml;Views\WarringView.xaml;
 
 False
 

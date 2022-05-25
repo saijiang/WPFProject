@@ -99,3 +99,5 @@ C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\ReportV
 C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\WarringView.baml
 C:\Users\user\Desktop\wpf\WPFTest\WPFTest\bin\Debug\net6.0-windows\LiveCharts.dll
 C:\Users\user\Desktop\wpf\WPFTest\WPFTest\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\Style\ScrollViewDictionary.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Themes\Generic.baml
