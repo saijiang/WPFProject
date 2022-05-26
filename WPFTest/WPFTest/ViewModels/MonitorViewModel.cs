@@ -12,29 +12,36 @@ namespace WPFTest.ViewModels
     internal class MonitorViewModel: NotifyBase
     {
 
-        public MonitorModel monitorModel { get; set; } = new MonitorModel();
+      
+        //设置一个集合 子元素为 LabelModel
+        public List<LabelModel> RunLabels { get; set; } = new List<LabelModel>();
 
-        ObservableCollection<MonitorModel> userData = new ObservableCollection<MonitorModel>();
-        public ObservableCollection<MonitorModel> UserData
-        {
-
-            get { return userData; }
-            set
-            {
-                userData = value;
-                this.NotifyChanged();
-            }
-        }
+        public List<LabelModel> BaseLabels { get; set; } = new List<LabelModel>();
 
 
 
         public MonitorViewModel()
         {
-            userData.Add(new MonitorModel() { Number = 1, Style = "盖伦", Age = 25, Sex = "12", Memo = "德玛西亚之力" });
-            userData.Add(new MonitorModel() { Number = 2, Style = "伊泽瑞尔", Age = 20, Sex = "23", Memo = "冒险家" });
-            userData.Add(new MonitorModel() { Number = 3, Style = "阿卡丽", Age = 20, Sex = "34", Memo = "忍者" });
-            userData.Add(new MonitorModel() { Number = 4, Style = "亚托克斯", Age = 500, Sex = "45", Memo = "暗裔，恶魔" });
-            userData.Add(new MonitorModel() { Number = 5, Style = "亚索", Age = 25, Sex = "56", Memo = "疾风剑豪" });
+
+            // 集合赋值
+            // 给运行状态集合内添加元素
+            RunLabels.Add(new LabelModel { Text = "当前状态", Value = "运行" });
+            RunLabels.Add(new LabelModel { Text = "周运行时长", Value = "80h" });
+            RunLabels.Add(new LabelModel { Text = "周关机时长", Value = "10h" });
+            RunLabels.Add(new LabelModel { Text = "周待机时长", Value = "20h" });
+            RunLabels.Add(new LabelModel { Text = "周故障时长", Value = "2h" });
+            RunLabels.Add(new LabelModel { Text = "健康状态", Value = "良好" });
+
+            //基本信息
+            BaseLabels.Add(new LabelModel { Text = "最大工作范围", Value = "1.44m"});
+            BaseLabels.Add(new LabelModel { Text = "有效载荷", Value = "20Kg" });
+            BaseLabels.Add(new LabelModel { Text = "有效轴数", Value = "6J" });
+            BaseLabels.Add(new LabelModel { Text = "重复定位精确度", Value = "0.001cm" });
+            BaseLabels.Add(new LabelModel { Text = "额定功率", Value = "2500w" });
+            BaseLabels.Add(new LabelModel { Text = "承重能力", Value = "5kg" });
+            BaseLabels.Add(new LabelModel { Text = "J6轴最大速度", Value = "2.1m/s" });
+            BaseLabels.Add(new LabelModel { Text = "电源电压", Value = "200-600v" });
+            BaseLabels.Add(new LabelModel { Text = "净重", Value = "225kg" });
 
         }
     }

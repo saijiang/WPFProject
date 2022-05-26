@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WPFTest.Views"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d"  Background='#F4F7FC'
-             d:DesignHeight="725.949" d:DesignWidth="1200">
+             d:DesignHeight="725.949" d:DesignWidth="1300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
@@ -137,12 +137,36 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="1.2*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Text="设备运行工况" FontWeight="Bold" Foreground="#555" VerticalAlignment="Center" Margin="5,0"></TextBlock>
-                <UniformGrid Columns="3" Grid.Row="1">
+
+                <!-- 根据model模型中的数据集合动态绑定 -->
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding RunLabels}">
+                    <!--  设置容器样式 -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3"></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <!--  内部样式 （子组件） -->
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#fff" CornerRadius="5" Margin="5">
+                                <StackPanel VerticalAlignment="Center" Margin="10,0">
+                                    <TextBlock Text="{Binding Text}" FontSize="10" Foreground="#999"></TextBlock>
+                                    <TextBlock Text="{Binding Value}" FontSize="14" Margin="0,3"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+                <!--  没有绑定model 模型数据 固定写死 -->
+                <!--
+                <UniformGrid Columns="3" Grid.Row="1" Visibility="Collapsed">
                     <Border Background="#fff" CornerRadius="5" Margin="5">
                         <StackPanel VerticalAlignment="Center" Margin="10,0">
                             <TextBlock Text="运行状态" FontSize="10" Foreground="#999"></TextBlock>
@@ -180,8 +204,34 @@
                         </StackPanel>
                     </Border>
                 </UniformGrid>
+                -->
+                
+                
                 <TextBlock Text="设备运行工况" FontWeight="Bold" Foreground="#555" VerticalAlignment="Center" Margin="5,0" Grid.Row="3"></TextBlock>
-                <UniformGrid Columns="3" Grid.Row="4">
+
+                <!-- 根据model模型中的数据集合动态绑定 -->
+                <ItemsControl Grid.Row="4" ItemsSource="{Binding BaseLabels}" >
+                    <!-- 设置子控件 父类模型样式 -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3"></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <!-- 内部展示样式 也可以说是内容 -->
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock Text="{Binding Value}" FontSize="16"></TextBlock>
+                                <TextBlock Text="{Binding Text}" FontSize="10" Foreground="#555" Margin="0,3"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+
+                <!--  没有绑定model 模型数据 固定写死 -->
+                <!--
+                <UniformGrid Columns="3" Grid.Row="4" Visibility="Collapsed">
                     <StackPanel Margin="5">
                         <TextBlock Text="1.44m" FontSize="16"></TextBlock>
                         <TextBlock Text="最大工作范围" FontSize="10" Foreground="#555" Margin="0,3"></TextBlock>
@@ -219,6 +269,8 @@
                         <TextBlock Text="净重" FontSize="10" Foreground="#555" Margin="0,3"></TextBlock>
                     </StackPanel>
                 </UniformGrid>
+                -->
+                
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
