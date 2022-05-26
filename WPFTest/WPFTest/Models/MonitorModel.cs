@@ -11,43 +11,45 @@ namespace WPFTest.Models
     internal class MonitorModel: NotifyBase
     {
 
-        private Index _number;
-        public Index Number
+        private Index _index;
+        public Index Index
         {
-            get { return _number; }
-            set { _number = value; this.NotifyChanged(); }
+            get { return _index; }
+            set { _index = value; this.NotifyChanged(); }
         }
 
-        private string _style;
-        public string Style { 
-            get { return _style; }
-            set { _style = value; this.NotifyChanged(); }
-        }
-
-
-        private int _age;
-        public int Age
-        {
-            get { return _age; }
-            set { _age = value; this.NotifyChanged(); }
+        private string _dataType;
+        public string DataType { 
+            get { return _dataType; }
+            set { _dataType = value; this.NotifyChanged(); }
         }
 
 
-        private string _sex;
-        public string Sex
+        private int _recordTime;
+        public int RecordTime
         {
-            get { return _sex; }
-            set { _sex = value; this.NotifyChanged(); }
+            get { return _recordTime; }
+            set { _recordTime = value; this.NotifyChanged(); }
+        }
+
+
+        private string _deviceName;
+        public string DeviceName
+        {
+            get { return _deviceName; }
+            set { _deviceName = value; this.NotifyChanged(); }
         }
 
         
-        private string _memo;
-        public string Memo
+        private string _value;
+        public string Value
         {
-            get { return _memo; }
-            set { _memo = value; this.NotifyChanged(); }
+            get { return _value; }
+            set { _value = value; this.NotifyChanged(); }
         }
 
+        private string _status;
+        public string Status { get { return _status; } set { _status = value; this.NotifyChanged(); } }
 
 
         public MonitorModel()

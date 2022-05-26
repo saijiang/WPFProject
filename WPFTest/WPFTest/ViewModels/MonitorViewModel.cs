@@ -18,7 +18,8 @@ namespace WPFTest.ViewModels
 
         public List<LabelModel> BaseLabels { get; set; } = new List<LabelModel>();
 
-
+        // 列表 如果需要时对集合内的子元素进行改变时（增删改查等）需要使用的是 ObservableCollection
+        public ObservableCollection<MonitorModel> Monitors { get; set; } = new ObservableCollection<MonitorModel>();
 
         public MonitorViewModel()
         {
