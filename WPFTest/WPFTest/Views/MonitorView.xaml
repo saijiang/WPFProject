@@ -617,20 +617,20 @@
                 <StackPanel VerticalAlignment="Center" TextBlock.FontWeight="Bold" TextBlock.Foreground="#555" Margin="15,0">
                     <TextBlock Text="设备运行日志"></TextBlock>
                 </StackPanel>
-                <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding userData}">
+                <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Monitors}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="序号（使用*均分宽度）" Width="*" Binding="{Binding Index}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="数据类型" Width="*" Binding="{Binding Index }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="记录日期" Width="*" Binding="{Binding Age}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="设备名称" Width="*" Binding="{Binding}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="温度值" Width="*" Binding="{Binding}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="数据类型" Width="*" Binding="{Binding DataType }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="记录日期" Width="*" Binding="{Binding RecordTime}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="设备名称" Width="*" Binding="{Binding DeviceName}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="温度值" Width="*" Binding="{Binding Value}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}"></DataGridTextColumn>
                         <DataGridTemplateColumn Header="操作" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Margin="5,5">
-                                            <Hyperlink  Command="{Binding}">详情</Hyperlink>
+                                            <Hyperlink  Command="{Binding DetailCommand}">详情</Hyperlink>
                                         </TextBlock>
                                         <TextBlock Margin="5,5">
                                             <Hyperlink Command="{Binding}">解除</Hyperlink>

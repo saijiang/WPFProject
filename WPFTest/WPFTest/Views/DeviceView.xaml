@@ -4,9 +4,370 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFTest.Views"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="760" d:DesignWidth="1300">
+
+    <UserControl.Resources>
+        <ControlTemplate TargetType="Button" x:Key="AddButtonTemplte">
+            <Border Background="#0076ff" CornerRadius="5" Name="back">
+                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="{TemplateBinding Content}" TextBlock.Foreground="White"></ContentPresenter>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#cc3269de" TargetName="back"></Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    
+    
     <Grid>
-        <TextBlock Text="deviceView"></TextBlock> 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="180"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Content="注册新设备" VerticalAlignment="Center" Height="30" Width="90" HorizontalAlignment="Right" Margin="10,0" Template="{StaticResource AddButtonTemplte}"></Button>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="#eee" BorderThickness="1,0" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Text="[设备健康状态跟踪]" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Grid.Row="2" Text="[设备健康状态跟踪]" VerticalAlignment="Center"></TextBlock>
+
+                    <lvc:CartesianChart Grid.Row="1">
+                        <lvc:CartesianChart.Series>
+                            <lvc:LineSeries Stroke="#3269de" Values="56,79,70,67,88,34,50">
+                                <lvc:LineSeries.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#ffe3e0" Offset="0"></GradientStop>
+                                        <GradientStop Color="White" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </lvc:LineSeries.Fill>
+                            </lvc:LineSeries>
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis ShowLabels="True" Labels="5/22,5/23,5/24,5/25,5/26,5/27,5/28" LabelsRotation="-45" FontSize="10">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Step="1" StrokeThickness="0"></lvc:Separator>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis ShowLabels="True" MinValue="0" FontSize="10">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Step="20"></lvc:Separator>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <UniformGrid Columns="4" Grid.Row="3">
+                        
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <lvc:PieChart InnerRadius="25" Width="80" Height="80" >
+                                <lvc:PieChart.Series>
+                                    <lvc:PieSeries Title="Maria" DataLabels="False" StrokeThickness="0" Values="3"/>
+                                    <lvc:PieSeries Title="Charles" DataLabels="False" StrokeThickness="0" Values="4"/>
+                                </lvc:PieChart.Series>
+                            </lvc:PieChart>
+                            <TextBlock Text="94%" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red"></TextBlock>
+                            <Border Grid.Row="1" Background="#f1f2f3" CornerRadius="5" Margin="10,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="已完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="123" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="未完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="13" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <lvc:PieChart InnerRadius="25" Width="80" Height="80" >
+                                <lvc:PieChart.Series>
+                                    <lvc:PieSeries Title="Maria" DataLabels="True" StrokeThickness="0" Values="3"/>
+                                    <lvc:PieSeries Title="Charles" DataLabels="True" StrokeThickness="0" Values="4"/>
+                                </lvc:PieChart.Series>
+                            </lvc:PieChart>
+                            <TextBlock Text="94%" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red"></TextBlock>
+                            <Border Grid.Row="1" Background="#f1f2f3" CornerRadius="5" Margin="10,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="已完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="123" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="未完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="13" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <lvc:PieChart InnerRadius="25" Width="80" Height="80" >
+                                <lvc:PieChart.Series>
+                                    <lvc:PieSeries Title="Maria" DataLabels="False" StrokeThickness="0" Values="3"/>
+                                    <lvc:PieSeries Title="Charles" DataLabels="False" StrokeThickness="0" Values="4"/>
+                                </lvc:PieChart.Series>
+                            </lvc:PieChart>
+                            <TextBlock Text="94%" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red"></TextBlock>
+                            <Border Grid.Row="1" Background="#f1f2f3" CornerRadius="5" Margin="10,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="已完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="123" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="未完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="13" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <lvc:PieChart InnerRadius="25" Width="80" Height="80" >
+                                <lvc:PieChart.Series>
+                                    <lvc:PieSeries Title="Maria" DataLabels="True" StrokeThickness="0" Values="3"/>
+                                    <lvc:PieSeries Title="Charles" DataLabels="True" StrokeThickness="0" Values="4"/>
+                                </lvc:PieChart.Series>
+                            </lvc:PieChart>
+                            <TextBlock Text="94%" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red"></TextBlock>
+                            <Border Grid.Row="1" Background="#f1f2f3" CornerRadius="5" Margin="10,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="已完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="123" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="未完成" FontSize="10" HorizontalAlignment="Center"></TextBlock>
+                                        <TextBlock Text="13" FontSize="10" HorizontalAlignment="Center" Foreground="#0076ff"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                    </UniformGrid>
+                    
+                </Grid>
+            </Border>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="设备详情" VerticalAlignment="Center" FontSize="14"></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                      
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="[设备基本参数]" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#888"></TextBlock>
+                    <Border Grid.Row="1" Background="#fff" Margin="30,10" BorderThickness="0,2,0,2" CornerRadius="5" >
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#fff" Offset="0"></GradientStop>
+                                <GradientStop Color="#14aae6" Offset="0.4"></GradientStop>
+                                <GradientStop Color="#14aae6" Offset="0.6"></GradientStop>
+                                <GradientStop Color="#fff" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="&#xe632;" FontFamily="{StaticResource iconfont}" FontSize="30" Foreground="#14aae6" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock Text="#1 Master device information" Margin="0,10" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="010-1234567" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                   
+                </Grid>
+                <Grid Grid.Row="2" Margin="10,10,10,10" Background="#0076ff">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <TextBlock Foreground="White" VerticalAlignment="Center">
+                                <Run Text="P"></Run>
+                                <Run Text="0kw"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+                    <TextBlock Foreground="White" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+                                <Run Text="Va"></Run>
+                                <Run Text="668,126v"></Run>
+                    </TextBlock>
+
+
+
+
+                </Grid>
+                <StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0" TextBlock.Foreground="#0076ff">
+                    <TextBlock >
+                        <Hyperlink>编辑设备信息</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="[事件统计]" VerticalAlignment="Center"></TextBlock>
+                <lvc:PieChart Grid.Row="1" InnerRadius="25" Width="80" Height="80" Margin="0,7">
+                    <lvc:PieChart.Series>
+                        <lvc:PieSeries Values="22" StrokeThickness="0" Fill="Red"></lvc:PieSeries>
+                        <lvc:PieSeries Values="56" StrokeThickness="0" Fill="Orange"></lvc:PieSeries>
+                        <lvc:PieSeries Values="17" StrokeThickness="0" Fill="#14aae6"></lvc:PieSeries>
+                    </lvc:PieChart.Series>
+                </lvc:PieChart>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="95" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="事件总数" FontSize="10"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Margin="0,10">
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Background="Red" Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"></Border>
+                        <TextBlock Text="重大事件" Grid.Column="1"></TextBlock>
+                        <TextBlock Text="22" Grid.Column="2" HorizontalAlignment="Right" Margin="10,0"></TextBlock>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Background="Orange" Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"></Border>
+                        <TextBlock Text="重大事件" Grid.Column="1"></TextBlock>
+                        <TextBlock Text="22" Grid.Column="2" HorizontalAlignment="Right" Margin="10,0" ></TextBlock>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Background="#14aae6" Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"></Border>
+                        <TextBlock Text="重大事件" Grid.Column="1"></TextBlock>
+                        <TextBlock Text="22" Grid.Column="2" HorizontalAlignment="Right"  Margin="10,0"></TextBlock>
+                    </Grid>
+
+                </StackPanel>
+                
+            </Grid>
+            
+        </Grid>
+        
+        
     </Grid>
 </UserControl>

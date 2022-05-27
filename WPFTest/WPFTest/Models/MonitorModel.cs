@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
 using WPFTest.Base;
 
@@ -25,8 +26,8 @@ namespace WPFTest.Models
         }
 
 
-        private int _recordTime;
-        public int RecordTime
+        private string _recordTime;
+        public string RecordTime
         {
             get { return _recordTime; }
             set { _recordTime = value; this.NotifyChanged(); }
@@ -50,6 +51,37 @@ namespace WPFTest.Models
 
         private string _status;
         public string Status { get { return _status; } set { _status = value; this.NotifyChanged(); } }
+
+
+
+
+        //事件绑定
+
+        private CommondBase _detailCommand;
+        public CommondBase DetailCommand
+        {
+            get
+            {
+
+                if (_detailCommand == null)
+                {
+                    _detailCommand = new CommondBase();
+                    _detailCommand.DoExecute = new Action<object>(ShowDetail);
+                }
+
+                return _detailCommand;
+            }
+
+        }
+
+        // 详情点击委托方法
+        private void ShowDetail(object obj)
+        {
+            MessageBox.Show(this.Index.ToString());
+        }
+
+
+
 
 
         public MonitorModel()
