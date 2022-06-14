@@ -63,38 +63,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="ControlButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="15"></Setter>
-            <Setter Property="Width" Value="30"></Setter>
-            <Setter Property="Height" Value="30"></Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid Background="Transparent" Name="back">
-                            <!--Visibility 元素是否显示 visible表示元素在窗体正常显示 collapsed 元素不显示也不占用空间 hidden 元素不显示但依旧为其留有空间-->
-                            <Border Name="hover" Background="{TemplateBinding Background}" Visibility="Collapsed"></Border>
-                            <TextBlock Text="{TemplateBinding Content}"
-                                       FontFamily="{StaticResource iconfont}"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       Name="txt"
-                                       ></TextBlock>
-                        </Grid>
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <!--TargetName="hover" 来绑定 border Name="hover"-->
-                                <Setter Property="Visibility" Value="Visible" TargetName="hover"></Setter>
-                                <!--每个属性都有tag值， 可以通过tag 来传递值-->
-                                <Setter TargetName="txt" Property="Foreground" Value="{Binding Tag,RelativeSource={RelativeSource AncestorType=Button,Mode=FindAncestor}}"></Setter>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    
-             
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+       
         
         
     </Window.Resources>
@@ -172,17 +141,28 @@
                 </StackPanel>
                 <!--自定义窗口按钮 缩小 放大 关闭-->
                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" Margin="20,0">
-                    <Button Content="&#xe629;" Style="{StaticResource ControlButtonStyle}"
+                    <Button Content="&#xe629;" Style="{StaticResource BtnCloseStyle}"
                             Background="#ddd" Tag="#333" ToolTip="最小化"
                             Command="{Binding MinWindows}"
                             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                             ></Button>
-                    <Button Content="{Binding mainModel.BigNormalIcon , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ControlButtonStyle}" 
+                    <!-- , Mode=TwoWay,UpdateSourceTrigger=PropertyChanged &#xea6b; &#xe645; {Binding mainModel.BigNormalIcon}-->
+                    <Button Content="&#xea6b;" Style="{StaticResource BtnCloseStyle}" 
                             Background="#ddd" Tag="#333" ToolTip="向下还原"
+                           x:Name="normalBtn"
                             Command="{Binding BigWindows}"
                             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                           Click="bigBtn_Click"
                             ></Button>
-                    <Button Content="&#xe646;" Style="{StaticResource ControlButtonStyle}"
+                    <Button Content="&#xe645;" Style="{StaticResource BtnCloseStyle}" 
+                            Background="#ddd" Tag="#333" ToolTip="最大化"
+                           x:Name="bigBtn" Visibility="Collapsed"
+                            Command="{Binding BigWindows}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                            Click="bigBtn_Click"
+                            ></Button>
+
+                    <Button Content="&#xe646;" Style="{StaticResource BtnCloseStyle}"
                             Background="Red" Tag="#ffffff" ToolTip="关闭"
                             Command="{Binding CloseCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"

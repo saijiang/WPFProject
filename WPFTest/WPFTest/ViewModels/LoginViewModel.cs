@@ -48,6 +48,7 @@ namespace WPFTest.ViewModels
                 return _closeCommand;
             }
         }
+
         //登陆事件
         private CommondBase _loginCommand;
         public CommondBase LoginCommand {

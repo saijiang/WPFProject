@@ -13,12 +13,16 @@
             
             <ResourceDictionary.MergedDictionaries>
 
-                <ResourceDictionary Source="pack://application:,,,/WPFTest;component/Assets/Style/ScrollViewDictionary.xaml" />
-                
                 <ResourceDictionary>
                     <!--字体图标地址全局(变量)-->
                     <FontFamily x:Key="iconfont">pack://application:,,,/WPFTest;component/Assets/Fonts/#iconfont</FontFamily>
                 </ResourceDictionary>
+
+                <ResourceDictionary Source="pack://application:,,,/WPFTest;component/Assets/Style/ScrollViewDictionary.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/WPFTest;component/Assets/Style/CoustomButton.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/WPFTest;component/Assets/Style/JSTextBox.xaml"></ResourceDictionary>
+
                
             </ResourceDictionary.MergedDictionaries>
            

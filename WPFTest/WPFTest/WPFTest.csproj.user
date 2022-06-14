@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\DeviceEditWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DeviceView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,6 +27,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Assets\Style\ComboBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Assets\Style\CoustomButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Assets\Style\JSTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Assets\Style\LeftTabControlStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Assets\Style\ScrollViewDictionary.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -31,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DeviceEditWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DeviceView.xaml">

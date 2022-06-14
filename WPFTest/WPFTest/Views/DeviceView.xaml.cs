@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFTest.Models;
 
 namespace WPFTest.Views
 {
@@ -23,6 +24,9 @@ namespace WPFTest.Views
         public DeviceView()
         {
             InitializeComponent();
+            this.DataContext = new DeviceModel();
         }
+
+        
     }
 }

@@ -111,10 +111,54 @@ namespace WPFTest.DataAccess
         }
 
 
+        // 读取数据库中的内容
+        private DataTable GetDatas(string sql)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                if (DBConnection())
+                {
+                    Adap = new SqlDataAdapter(sql, Conn);
+                    Adap.Fill(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                this.Dispose();
+            }
+            return dt;
+        }
 
 
+        public DataTable GetDevices()
+        {
+            string strSql = "select * from device";
+            return GetDatas(strSql);
+        }
 
+        public DataTable GetProtocolSettings(string d_id, int type = 1)
+        {
+            string strSql = "select * from P_Modbus";
+            if(type == 2)
+            {
+                strSql = "select * from P_S7";
+                strSql += "where d_id = '" + d_id + "'";
+                return GetDatas(strSql);
+            }
+            else
+            return GetDatas(strSql);
+        }
 
+        public DataTable GetMonitorValues(string d_id)
+        {
+            string strSql = $"select * from monitor_values where d_id='{d_id}' order v_id";
+            return GetDatas(strSql);
+        }
 
     }
 }

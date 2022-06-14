@@ -66,6 +66,7 @@ namespace WPFTest.ViewModels
                         {
                             (obj as System.Windows.Window).WindowState = WindowState.Normal;
                             mainModel.BigNormalIcon = "&#xea6b;";
+                          
                         }
                         else
                         {

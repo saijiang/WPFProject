@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="TextBox" Version="1.3.12" />
   </ItemGroup>
 
   <ItemGroup>

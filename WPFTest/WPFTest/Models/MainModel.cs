@@ -10,6 +10,10 @@ namespace WPFTest.Models
 {
     internal class MainModel:NotifyBase
     {
+
+      
+
+
         private string _time;
         public string Time { 
             get { return _time; }
@@ -19,7 +23,7 @@ namespace WPFTest.Models
             }
         }
 
-        private string _bigNormalIcon= "&#xea6b;";
+        private string _bigNormalIcon;
         public string BigNormalIcon
         {
             get { return _bigNormalIcon; }

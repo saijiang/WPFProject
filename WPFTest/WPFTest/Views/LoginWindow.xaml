@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTest.Views"
         xmlns:base="clr-namespace:WPFTest.Base"
+       
         mc:Ignorable="d"
      
         Background="Transparent" 
@@ -32,80 +33,7 @@
         </ControlTemplate>
         
         <!--样式模板-->
-        <Style TargetType="TextBox" x:Key="UserNameTextBoxStyle">
-            <!--设置字体颜色-->
-            <Setter Property="Foreground" Value="Red"></Setter>
-            <Setter Property="Height" Value="35"></Setter>
-           
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <!--边框样式-->
-                        <Border 
-                            x:Name="border" 
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            Background="{TemplateBinding Background}"
-                            SnapsToDevicePixels="True"
-                            CornerRadius="5"
-                          
-                            >
-                            <!--里面内容-->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <!--BorderThickness 边框宽度-->
-                                <Border BorderBrush="#ddd" BorderThickness="0,0,1,0"></Border>
-                                <TextBlock 
-                                    Text="请输入用户名"
-                                    Grid.Column="1" 
-                                    VerticalAlignment="Center"
-                                    Foreground="#bbb"
-                                    Name="markText"
-                                    Visibility="Collapsed"
-                                    FontSize="12"
-                                    Margin="2,0"
-                                    ></TextBlock>
-                                <TextBlock Text="&#xe788;"
-                                           FontFamily="{StaticResource iconfont}"
-                                           FontSize="14"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Foreground="#ddd"
-                                           ></TextBlock>
-                                <ScrollViewer 
-                                    x:Name="PART_ContentHost"
-                                    Focusable="False"
-                                    HorizontalScrollBarVisibility="Hidden"
-                                    VerticalScrollBarVisibility="Hidden"
-                                    Grid.Column="1"
-                                    VerticalAlignment="Center"
-                                    MinHeight="20"
-                                    ></ScrollViewer>
-                            </Grid>
-                            
-                        </Border>
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"></Setter>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" TargetName="border" Value="#ff7eed"></Setter>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter Property="BorderBrush" TargetName="border" Value="#23edc2"></Setter>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Path=Text,RelativeSource={RelativeSource Mode=Self}}" Value="">
-                                <Setter Property="Visibility" TargetName="markText" Value="Visible"></Setter>
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>    
-                        
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+       
         
         <!--密码-->
         <Style TargetType="PasswordBox" x:Key="PasswordStyle">
@@ -240,12 +168,13 @@
                     <TextBlock Text="我是副标题"></TextBlock>
                </StackPanel>
                 <!--输入框 输入账号 以及 密码  UpdateSourceTrigger=PropertyChanged 绑定model时可以直接将输入的值 绑定到model模型中去-->
-                <TextBox Text="{Binding userModel.UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3"  Style="{StaticResource UserNameTextBoxStyle}" ></TextBox>
+                <TextBox  Text="{Binding userModel.UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3"  Style="{StaticResource UserNameTextBoxStyle}" ></TextBox>
                 <PasswordBox
                     base:PasswordBoxHelper.Password="{Binding userModel.Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                    base:PasswordBoxHelper.Attach="true"
+                    base:PasswordBoxHelper.Attach="true" Visibility="Collapsed"
                     Grid.Row="4" Style="{StaticResource PasswordStyle}"></PasswordBox>
-                
+                <TextBox Style="{StaticResource TxtPwd}" Grid.Row="4"></TextBox>
+               
                 <!--记住登陆信息 以及 忘记密码-->
                 <CheckBox Content="记住登陆信息" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" Grid.Row='5'></CheckBox>
                 <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" Grid.Row="5">
