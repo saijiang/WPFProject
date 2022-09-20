@@ -23,7 +23,7 @@ namespace WPFTest.ViewModels
         public  LoginViewModel()
         {
             userModel.UserName = "admin";
-            userModel.Password = "123456";
+          //  userModel.Password = "123456";
         }
 
         // 关闭窗口事件 和 xmal 绑定一定要是属性才可以

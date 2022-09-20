@@ -153,3 +153,10 @@ C:\Users\fuxinkun\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\St
 C:\Users\fuxinkun\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\Style\CoustomButton.baml
 C:\Users\fuxinkun\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\Style\JSTextBox.baml
 C:\Users\fuxinkun\Desktop\wpf\WPFTest\WPFTest\bin\Debug\net6.0-windows\Windows.Forms.HintTextBox.dll
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\bin\Debug\net6.0-windows\Windows.Forms.HintTextBox.dll
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\Style\ComboBoxStyle.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\Style\CoustomButton.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\Style\JSTextBox.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Assets\Style\LeftTabControlStyle.baml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\DeviceEditWindow.g.cs
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\Views\DeviceEditWindow.baml

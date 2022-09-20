@@ -171,9 +171,9 @@
                 <TextBox  Text="{Binding userModel.UserName,UpdateSourceTrigger=PropertyChanged}"  Grid.Row="3"  Style="{StaticResource UserNameTextBoxStyle}" ></TextBox>
                 <PasswordBox
                     base:PasswordBoxHelper.Password="{Binding userModel.Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                    base:PasswordBoxHelper.Attach="true" Visibility="Collapsed"
+                    base:PasswordBoxHelper.Attach="true" 
                     Grid.Row="4" Style="{StaticResource PasswordStyle}"></PasswordBox>
-                <TextBox Style="{StaticResource TxtPwd}" Grid.Row="4"></TextBox>
+                <TextBox Style="{StaticResource TxtPwd}" Grid.Row="4" Visibility="Collapsed"></TextBox>
                
                 <!--记住登陆信息 以及 忘记密码-->
                 <CheckBox Content="记住登陆信息" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" Grid.Row='5'></CheckBox>

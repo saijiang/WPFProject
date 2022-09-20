@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\fuxinkun\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\obj\Debug\net6.0-windows\
 WPFTest
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\fuxinkun\Desktop\wpf\WPFTest\WPFTest\App.xaml
+C:\Users\user\Desktop\wpf\WPFTest\WPFTest\App.xaml
 131387874843
 
 292107067898
-198-1007767291
+1981042722191
 Assets\Style\ComboBoxStyle.xaml;Assets\Style\CoustomButton.xaml;Assets\Style\JSTextBox.xaml;Assets\Style\LeftTabControlStyle.xaml;Assets\Style\ScrollViewDictionary.xaml;MainWindow.xaml;Themes\Generic.xaml;Views\DeviceEditWindow.xaml;Views\DeviceView.xaml;Views\LoginWindow.xaml;Views\MonitorView.xaml;Views\ReportView.xaml;Views\WarringView.xaml;
 
 False
